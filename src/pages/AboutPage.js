@@ -54,7 +54,7 @@ function AboutPage() {
   const teachers = [
     {
       name: "Pérola da Beauty",
-      flag: "https://flagcdn.com/16x12/br.png", // Brasil
+      flag: "https://flagcdn.com/16x12/mz.png", // Brasil
       role: "Lead English Instructor",
       experience: "6 years",
       specialty: "Business English, General English, Grammar & Academic writing",
@@ -78,7 +78,7 @@ function AboutPage() {
     },
     {
       name: "Elena Rodriguez",
-      flag: "https://flagcdn.com/16x12/mz.png", // Moçambique
+      flag: "https://flagcdn.com/16x12/br.png", // Moçambique
       role: "Academic Director",
       experience: "15 years",
       specialty: "Grammar & Academic Writing",

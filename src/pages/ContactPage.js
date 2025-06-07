@@ -68,7 +68,7 @@ function ContactPage() {
     {
       icon: '📱',
       title: 'Phone',
-      details: ['+1 (555) 123-4567', '+1 (555) 987-6543'],
+      details: ['+7 996 580 64 20'],
       hours: 'Monday - Friday: 8am - 8pm'
     },
     {
