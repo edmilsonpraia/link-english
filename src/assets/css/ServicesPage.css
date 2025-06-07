@@ -1,0 +1,701 @@
+/* src/assets/css/ServicesPage.css */
+
+/* Base Styles */
+.services-page-container {
+    background-color: #191C2C;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+  
+  .services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Text Styles */
+  h1, h2, h3, h4 {
+    margin: 0;
+  }
+  
+  .gradient-text {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #4F9EE8, #6DB9FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: pulseText 3s infinite;
+  }
+  
+  .services-subtitle {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+  }
+  
+  .section-description {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    text-align: center;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* Hero Section */
+  .services-hero-section {
+    background: linear-gradient(135deg, #151933 0%, #1d2040 100%);
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .hero-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234F9EE8' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.2;
+    z-index: 0;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  
+  .service-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .service-button.primary {
+    background: linear-gradient(90deg, #4F9EE8, #3B7BC0);
+    color: white;
+    box-shadow: 0 8px 20px rgba(79, 158, 232, 0.3);
+  }
+  
+  .service-button.primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(79, 158, 232, 0.5);
+  }
+  
+  .service-button.secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(79, 158, 232, 0.6);
+  }
+  
+  .service-button.secondary:hover {
+    background: rgba(79, 158, 232, 0.1);
+    transform: translateY(-5px);
+  }
+  
+  /* Main Courses Section */
+  .main-courses-section {
+    padding: 6rem 0;
+  }
+  
+  .main-courses-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  .course-card {
+    background: rgba(79, 158, 232, 0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(79, 158, 232, 0.2);
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border-color: rgba(79, 158, 232, 0.5);
+  }
+  
+  .course-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .course-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #4F9EE8;
+  }
+  
+  .course-description {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .course-details {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+  }
+  
+  .course-details p {
+    margin: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .course-features {
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+  
+  .course-features h4 {
+    margin-bottom: 0.75rem;
+    color: white;
+  }
+  
+  .course-features ul {
+    padding-left: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .course-features li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .course-button {
+    background: linear-gradient(90deg, #4F9EE8, #3B7BC0);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .course-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(79, 158, 232, 0.3);
+  }
+  
+  /* Class Types Section */
+  .class-types-section {
+    padding: 6rem 0;
+    background: rgba(79, 158, 232, 0.05);
+  }
+  
+  .class-types-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .class-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+  }
+  
+  .class-type-card {
+    background: rgba(79, 158, 232, 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(79, 158, 232, 0.2);
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .class-type-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border-color: rgba(79, 158, 232, 0.5);
+  }
+  
+  .class-type-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .class-type-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .class-type-card:hover .class-type-image img {
+    transform: scale(1.1);
+  }
+  
+  .class-type-content {
+    padding: 2rem;
+  }
+  
+  .class-type-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #4F9EE8;
+  }
+  
+  .class-type-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .class-type-details {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+  }
+  
+  .class-type-details p {
+    margin: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .class-type-details span {
+    color: #4F9EE8;
+    font-weight: 500;
+  }
+  
+  .class-type-button {
+    background: linear-gradient(90deg, #4F9EE8, #3B7BC0);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+  
+  .class-type-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(79, 158, 232, 0.3);
+  }
+  
+  /* Special Resources Section */
+  .special-resources-section {
+    padding: 6rem 0;
+  }
+  
+  .special-resources-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .resource-card {
+    background: rgba(79, 158, 232, 0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(79, 158, 232, 0.2);
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    border-color: rgba(79, 158, 232, 0.5);
+  }
+  
+  .resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, #4F9EE8, #3B7BC0);
+  }
+  
+  .resource-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #4F9EE8;
+  }
+  
+  .resource-card p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .resource-frequency {
+    font-size: 0.9rem;
+    margin-bottom: 0 !important;
+  }
+  
+  .resource-frequency span {
+    color: #4F9EE8;
+    font-weight: 500;
+  }
+  
+  /* Pricing Section */
+  .pricing-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #151933 0%, #1d2040 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .pricing-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234F9EE8' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.2;
+    z-index: 0;
+  }
+  
+  .pricing-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .pricing-card {
+    background: rgba(79, 158, 232, 0.1);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(79, 158, 232, 0.2);
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .pricing-card.recommended {
+    border-color: #4F9EE8;
+    transform: scale(1.05);
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .pricing-card.recommended:hover {
+    transform: translateY(-10px) scale(1.05);
+  }
+  
+  .recommended-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(90deg, #4F9EE8, #3B7BC0);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-bottom-left-radius: 0.5rem;
+  }
+  
+  .pricing-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: white;
+  }
+  
+  .pricing-amount {
+    margin-bottom: 2rem;
+  }
+  
+  .price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #4F9EE8;
+  }
+  
+  .period {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    display: block;
+    margin-top: 0.5rem;
+  }
+  
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    text-align: left;
+  }
+  
+  .pricing-features li {
+    padding: 0.75rem 0 0.75rem 1.5rem;
+    position: relative;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .pricing-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #4F9EE8;
+    font-weight: bold;
+  }
+  
+  .pricing-button {
+    background: linear-gradient(90deg, #4F9EE8, #3B7BC0);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+  
+  .pricing-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(79, 158, 232, 0.3);
+  }
+  
+  /* FAQ Section */
+  .faq-section {
+    padding: 6rem 0;
+  }
+  
+  .faq-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .faq-item {
+    background: rgba(79, 158, 232, 0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(79, 158, 232, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .faq-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    border-color: rgba(79, 158, 232, 0.5);
+  }
+  
+  .faq-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #4F9EE8;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  
+  .faq-item h3::before {
+    content: '?';
+    position: absolute;
+    left: 0;
+    color: #4F9EE8;
+    font-weight: bold;
+  }
+  
+  .faq-item p {
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* CTA Section */
+  .services-cta-section {
+    padding: 6rem 0;
+    text-align: center;
+    background: linear-gradient(135deg, #151933 0%, #1d2040 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .services-cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    animation: pulseText 3s infinite;
+  }
+  
+  .services-cta-section p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background: linear-gradient(90deg, #4F9EE8, #3B7BC0);
+    color: white;
+    padding: 1.2rem 3rem;
+    border-radius: 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(79, 158, 232, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(79, 158, 232, 0.5);
+  }
+  
+  .button-shine {
+    position: absolute;
+    top: -180%;
+    left: 0;
+    width: 30px;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg);
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    animation: buttonShine 3s infinite;
+    z-index: -1;
+  }
+  
+  /* Animation Classes */
+  .animate-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .animate-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Keyframes */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  @keyframes pulseText {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+  }
+  
+  @keyframes buttonShine {
+    0% { left: -100px; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .pricing-card.recommended {
+      transform: scale(1);
+    }
+    
+    .pricing-card.recommended:hover {
+      transform: translateY(-10px);
+    }
+    
+    .hero-buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .service-button {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .gradient-text {
+      font-size: 2.5rem;
+    }
+    
+    .services-hero-section,
+    .main-courses-section,
+    .class-types-section,
+    .special-resources-section,
+    .pricing-section,
+    .faq-section,
+    .services-cta-section {
+      padding: 4rem 0;
+    }
+    
+    .pricing-grid,
+    .faq-grid,
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+  }
