@@ -55,7 +55,7 @@ function AboutPage() {
     {
       name: "Pérola da Beauty",
       flag: "https://flagcdn.com/16x12/mz.png", // Brasil
-      role: "Lead English Instructor",
+      role: "Certified TEFL Teacher",
       experience: "6 years",
       specialty: "Business English, General English, Grammar & Academic writing",
       image: teacherImage1
