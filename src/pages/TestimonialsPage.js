@@ -2,12 +2,57 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/css/TestimonialsPage.css';
 
+// Dados dos depoimentos em destaque - movido para fora do componente
+const featuredTestimonials = [
+  {
+    name: "Gertrudes Massango",
+    role: "Inspectora",
+    country: "Moçambique",
+    image: "https://res.cloudinary.com/dzmeorljk/image/upload/v1745255621/01_ytr4uk.jpg",
+    text: "O que mais agrada-me no Link English, é a didáctica da Professora ao leccionar e traz conteúdos muito interessantes que permite dentro de pouco tempo falar e escrever Inglês. Eu recomendo a qualquer pessoa até para quem quer aprender o idioma com urgência."
+  },
+  {
+    name: "Justina Tembe",
+    role: "Inspectora",
+    country: "Moçambique",
+    image: "https://res.cloudinary.com/dzmeorljk/image/upload/v1745256298/02_w0y960.jpg",
+    text: " O que eu mais gosto nas aulas é de escutar a pronúncia da professora, porque é encantadora e um factor bastante motivador para quem deseja aprender a língua inglesa, pois é muito importante pronunciar correctamente e de forma que os demais consigam perceber e isso ela tem de sobra. Para quem está a pensar em estudar na Link English, eu diria para apostar, pois os conteúdos programáticos das aulas, bem como a forma de abordagem são excelentes para quem deseja ser fluente em inglês, tanto na fala como escrita."
+  },
+  {
+    name: "Moniz Langa",
+    role: "MEAL Officer",
+    country: "Mozambique",
+    image: "https://res.cloudinary.com/dzmeorljk/image/upload/v1745256518/03_uyxnha.jpg",
+    text: "Os ⁠conteúdos são relevantes para as minhas necessidades e objetivos. Método de ensino: prático, interativo com possibilidades de ajustar os períodos das aulas. Interação em sala de aulas: boa no que diz respeito as possibilidades e aprender e ao mesmo tempo trazer experiências do dia-à-dia."
+  },
+  {
+    name: "Bruna da Glória",
+    role: "Estudante",
+    country: "Mozambique",
+    image: "https://res.cloudinary.com/dzmeorljk/image/upload/v1745256966/04_ezcmdw.jpg",
+    text: "O que eu mais gosto nas aulas é que são 100% em inglês desde o primeiro dia, o que me ajudou a me acostumar rápido com o idioma e pensar diretamente em inglês, sem ficar a traduzir. As atividades de conversação são superdinâmicas e, com temas do dia a dia que realmente me facilitam  falar de vários temas com naturalidade. Além disso, a plataforma digital é ótima porque posso revisar o material das aulas e fazer o TPC quando for mais conveniente para mim – sem pressão. "
+  },
+  {
+    name: "Zongo Armando",
+    role: "Geocientista",
+    country: "Angola",
+    image: "https://res.cloudinary.com/dzmeorljk/image/upload/v1753175635/photo_2025-07-22_12-17-35_zlwq34.jpg",
+    text: "I have only praise for Link English. It is a serious and professional institution that uses excellent methodologies for teaching the English language, with dynamic methods. In a short time, you can clearly notice the progress, fluency, and improvement in listening skills. The strategy of bringing native speakers to interact with us is excellent, as it allows us to experience the language beyond the formalism of textbooks and also creates opportunities for debates. It is the right place for anyone who wants to speak English like a native. "
+  },
+  {
+    name: "Maria Estrela",
+    role: "Engenheira Agrônoma",
+    country: "França",
+    image: "https://res.cloudinary.com/dzmeorljk/image/upload/v1753175531/photo_2025-07-22_13-06-04_savcwx.jpg",
+    text: "A professora Pérola revolucionou minha jornada no aprendizado de inglês com uma abordagem única que combina excelência pedagógica e acolhimento. Suas aulas interativas, repletas de recursos visuais e oportunidades para prática oral, criaram um ambiente perfeito para meu desenvolvimento. O diferencial está na maneira como ela equilibra teoria e prática, tornando cada aula produtiva. Em pouco tempo, pude notar avanços significativos não apenas na minha fluência, mas também na confiança para usar o inglês no dia a dia. "
+  }
+];
+
 function TestimonialsPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isVisible, setIsVisible] = useState({});
-
   useEffect(() => {
-    // Animações baseadas em scroll
+    // Animações baseadas em scroll APENAS
     const handleScroll = () => {
       const sections = document.querySelectorAll('.animate-section');
       sections.forEach(section => {
@@ -20,51 +65,14 @@ function TestimonialsPage() {
       });
     };
     
-    // Carrossel automático
-    const interval = setInterval(() => {
-      setActiveIndex(prev => (prev + 1) % featuredTestimonials.length);
-    }, 8000);
-    
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Para itens visíveis inicialmente
     
+    // Cleanup apenas para scroll
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearInterval(interval);
     };
-  }, []);
-
-  // Dados dos depoimentos em destaque
-  const featuredTestimonials = [
-    {
-      name: "Gertrudes Massango",
-      role: "Inspectora",
-      country: "Moçambique",
-      image: "https://res.cloudinary.com/dzmeorljk/image/upload/v1745255621/01_ytr4uk.jpg",
-      text: "O que mais agrada-me no Link English, é a didáctica da Professora ao leccionar e traz conteúdos muito interessantes que permite dentro de pouco tempo falar e escrever Inglês. Eu recomendo a qualquer pessoa até para quem quer aprender o idioma com urgência."
-    },
-    {
-      name: "Justina Tembe",
-      role: "Inspectora",
-      country: "Moçambique",
-      image: "https://res.cloudinary.com/dzmeorljk/image/upload/v1745256298/02_w0y960.jpg",
-      text: " O que eu mais gosto nas aulas é de escutar a pronúncia da professora, porque é encantadora e um factor bastante motivador para quem deseja aprender a língua inglesa, pois é muito importante pronunciar correctamente e de forma que os demais consigam perceber e isso ela tem de sobra. Para quem está a pensar em estudar na Link English, eu diria para apostar, pois os conteúdos programáticos das aulas, bem como a forma de abordagem são excelentes para quem deseja ser fluente em inglês, tanto na fala como escrita."
-    },
-    {
-      name: "Moniz Langa",
-      role: "MEAL Officer",
-      country: "Mozambique",
-      image: "https://res.cloudinary.com/dzmeorljk/image/upload/v1745256518/03_uyxnha.jpg",
-      text: "Os ⁠conteúdos são relevantes para as minhas necessidades e objetivos. Método de ensino: prático, interativo com possibilidades de ajustar os períodos das aulas. Interação em sala de aulas: boa no que diz respeito as possibilidades e aprender e ao mesmo tempo trazer experiências do dia-à-dia."
-    },
-    {
-      name: "Bruna da Glória",
-      role: "Estudante",
-      country: "Mozambique",
-      image: "https://res.cloudinary.com/dzmeorljk/image/upload/v1745256966/04_ezcmdw.jpg",
-      text: "O que eu mais gosto nas aulas é que são 100% em inglês desde o primeiro dia, o que me ajudou a me acostumar rápido com o idioma e pensar diretamente em inglês, sem ficar a traduzir. As atividades de conversação são superdinâmicas e, com temas do dia a dia que realmente me facilitam  falar de vários temas com naturalidade. Além disso, a plataforma digital é ótima porque posso revisar o material das aulas e fazer o TPC quando for mais conveniente para mim – sem pressão. "
-    }
-  ];
+  }, []); // Array de dependências vazio para executar apenas uma vez
 
   // Dados de todos os depoimentos
   const allTestimonials = [
@@ -100,7 +108,7 @@ function TestimonialsPage() {
       name: "Angelo Ferreira",
       program: "Business English",
       country: "Mozambique",
-      text: "I am businessman and you know businessman without English you can not go ahead. When I started my English lesson I didn’t know the many secret to learn English but today I am speaking not perfect but I have seen that my English is improving day by day and until end of the year my English will be another thing grace the English lesson I have been receiving.",
+      text: "I am businessman and you know businessman without English you can not go ahead. When I started my English lesson I didn't know the many secret to learn English but today I am speaking not perfect but I have seen that my English is improving day by day and until end of the year my English will be another thing grace the English lesson I have been receiving.",
       rating: 5
     },
     {
@@ -143,6 +151,30 @@ function TestimonialsPage() {
     ));
   };
 
+  // Funções para navegação manual do carrossel - SEM AUTOMAÇÃO
+  const nextSlide = () => {
+    console.log('Next slide clicked - current index:', activeIndex); // Debug
+    setActiveIndex((prev) => {
+      const newIndex = (prev + 1) % featuredTestimonials.length;
+      console.log('New index:', newIndex); // Debug
+      return newIndex;
+    });
+  };
+
+  const prevSlide = () => {
+    console.log('Previous slide clicked - current index:', activeIndex); // Debug
+    setActiveIndex((prev) => {
+      const newIndex = (prev - 1 + featuredTestimonials.length) % featuredTestimonials.length;
+      console.log('New index:', newIndex); // Debug
+      return newIndex;
+    });
+  };
+
+  const goToSlide = (index) => {
+    console.log('Dot clicked - going to index:', index); // Debug
+    setActiveIndex(index);
+  };
+
   return (
     <div className="testimonials-page-container">
       {/* Hero Section */}
@@ -162,6 +194,14 @@ function TestimonialsPage() {
           <h2>Featured Testimonials</h2>
           
           <div className="testimonial-carousel">
+            {/* Botão Anterior */}
+            <button className="carousel-nav prev" onClick={prevSlide} aria-label="Previous testimonial">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+
+            {/* Slides do Carrossel */}
             {featuredTestimonials.map((testimonial, index) => (
               <div 
                 key={index} 
@@ -180,17 +220,26 @@ function TestimonialsPage() {
                 </div>
               </div>
             ))}
+
+            {/* Botão Próximo */}
+            <button className="carousel-nav next" onClick={nextSlide} aria-label="Next testimonial">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
           </div>
           
-          <div className="carousel-indicators">
-            {featuredTestimonials.map((_, index) => (
-              <button 
-                key={index} 
-                className={`indicator ${index === activeIndex ? 'active' : ''}`}
-                onClick={() => setActiveIndex(index)}
-              ></button>
-            ))}
-          </div>
+            {/* Indicadores (Dots) */}
+            <div className="carousel-indicators">
+              {featuredTestimonials.map((_, index) => (
+                <button 
+                  key={index} 
+                  className={`indicator ${index === activeIndex ? 'active' : ''}`}
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                ></button>
+              ))}
+            </div>
         </div>
       </section>
 

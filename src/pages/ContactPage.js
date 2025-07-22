@@ -277,11 +277,6 @@ function ContactPage() {
               </div>
             ))}
           </div>
-          
-          <div className="faq-cta">
-            <p>Didn't find what you're looking for?</p>
-            <a href="#contact-form" className="faq-button">Ask Us Directly</a>
-          </div>
         </div>
       </section>
 
@@ -296,35 +291,6 @@ function ContactPage() {
               <input type="email" placeholder="Your email address" />
               <button type="submit">Subscribe</button>
             </form>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Media Section */}
-      <section className="social-section animate-section">
-        <div className="contact-container">
-          <h2>Connect With Us</h2>
-          <p className="section-description">
-            Follow us on social media for language tips, student success stories, and updates
-          </p>
-          
-          <div className="social-links">
-            <a href="#" className="social-link">
-              <div className="social-icon">f</div>
-              <span>Facebook</span>
-            </a>
-            <a href="#" className="social-link">
-              <div className="social-icon">in</div>
-              <span>LinkedIn</span>
-            </a>
-            <a href="#" className="social-link">
-              <div className="social-icon">x</div>
-              <span>Twitter</span>
-            </a>
-            <a href="#" className="social-link">
-              <div className="social-icon">ig</div>
-              <span>Instagram</span>
-            </a>
           </div>
         </div>
       </section>

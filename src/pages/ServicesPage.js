@@ -53,9 +53,9 @@ function ServicesPage() {
       features: ["Small class sizes", "Weekly progress reports", "Regular speaking practice"],
       icon: "📚",
       pricing: {
-        group: { price: "$199", period: "per month" },
-        individual: { price: "$349", period: "per month" },
-        online: { price: "$149", period: "per month" }
+        group: { price: "$65", period: "per month" },
+        individual: { price: "$155", period: "per month" },
+        online: { price: "$255", period: "per month" }
       }
     },
     {
@@ -66,9 +66,9 @@ function ServicesPage() {
       features: ["Industry-specific vocabulary", "Business case studies", "Mock meetings"],
       icon: "💼",
       pricing: {
-        group: { price: "$249", period: "per month" },
-        individual: { price: "$399", period: "per month" },
-        online: { price: "$199", period: "per month" }
+        group: { price: "$85", period: "per month" },
+        individual: { price: "$175", period: "per month" },
+        online: { price: "$299", period: "per month" }
       }
     },
     {
@@ -79,9 +79,10 @@ function ServicesPage() {
       features: ["Video Lessons", "Personalized feedback", "Access to our Sounds Library"],
       icon: "🗣️",
       pricing: {
-        group: { price: "$179", period: "per month" },
-        individual: { price: "$299", period: "per month" },
+        group: { price: "$49", period: "per month" },
+        individual: { price: "$99", period: "per month" },
         online: { price: "$129", period: "per month" }
+       
       }
     },
     {
@@ -92,9 +93,9 @@ function ServicesPage() {
       features: ["Real-world topics", "Pronunciation workshops", "Cultural discussions"],
       icon: "🗣️",
       pricing: {
-        group: { price: "$199", period: "per month" },
-        individual: { price: "$329", period: "per month" },
-        online: { price: "$149", period: "per month" }
+        group: { price: "$55", period: "per month" },
+        individual: { price: "$110", period: "per month" },
+        online: { price: "$199", period: "per month" }
       }
     },
     {
@@ -105,9 +106,9 @@ function ServicesPage() {
       features: ["Polished emails", "CVs and cover letters"],
       icon: "📝",
       pricing: {
-        group: { price: "$159", period: "per month" },
-        individual: { price: "$279", period: "per month" },
-        online: { price: "$119", period: "per month" }
+        group: { price: "$55", period: "per month" },
+        individual: { price: "$155", period: "per month" },
+        online: { price: "$285", period: "per month" }
       }
     }
   ];
@@ -332,32 +333,32 @@ function ServicesPage() {
                     <div className="price">{selectedCourse.pricing.group.price}</div>
                     <div className="period">{selectedCourse.pricing.group.period}</div>
                     <ul>
-                      <li>6-12 students per class</li>
+                      <li>6-10 students per class</li>
                       <li>Interactive learning environment</li>
-                      <li>Collaborative practice</li>
+                      <li>Dynamic discussions</li>
                     </ul>
                   </div>
                   
                   <div className="pricing-card-modal popular">
                     <div className="popular-badge">Most Popular</div>
-                    <h4>👤 Individual Lessons</h4>
+                    <h4>👤 Pair Lessons </h4>
                     <div className="price">{selectedCourse.pricing.individual.price}</div>
                     <div className="period">{selectedCourse.pricing.individual.period}</div>
                     <ul>
-                      <li>Personalized instruction</li>
-                      <li>Flexible scheduling</li>
+                      <li>2 Students per class</li>
+                      <li>Interactive practice</li>
                       <li>Customized curriculum</li>
                     </ul>
                   </div>
                   
                   <div className="pricing-card-modal">
-                    <h4>💻 Online Learning</h4>
+                    <h4>💻 Individual Lessons</h4>
                     <div className="price">{selectedCourse.pricing.online.price}</div>
                     <div className="period">{selectedCourse.pricing.online.period}</div>
                     <ul>
-                      <li>Study from anywhere</li>
-                      <li>Interactive virtual classroom</li>
-                      <li>24/7 platform access</li>
+                      <li>Customized curriculum</li>
+                      <li>Flexible scheduling</li>
+                      <li>Personalized instruction and feedback</li>
                     </ul>
                   </div>
                 </div>
