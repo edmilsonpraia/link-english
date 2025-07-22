@@ -10,21 +10,30 @@ import teacherImage7 from '../assets/images/7.jpg';
 
 function AboutPage() {
   useEffect(() => {
-    // Criando animação de partículas no fundo
+    // Criando animação de partículas no fundo - CONTROLADA
     const createParticles = () => {
+      // Verificar se já existe para evitar duplicação
+      const existing = document.querySelector('.about-bg-animation');
+      if (existing) return;
+
       const bgAnimation = document.createElement('div');
       bgAnimation.className = 'about-bg-animation';
-      document.querySelector('.about-page-container').appendChild(bgAnimation);
       
-      for (let i = 0; i < 50; i++) {
-        const span = document.createElement('span');
-        span.style.width = `${Math.random() * 10 + 3}px`;
-        span.style.height = span.style.width;
-        span.style.left = `${Math.random() * 100}%`;
-        span.style.bottom = `${Math.random() * 100}%`;
-        span.style.animationDelay = `${Math.random() * 15}s`;
-        span.style.animationDuration = `${Math.random() * 10 + 15}s`;
-        bgAnimation.appendChild(span);
+      const container = document.querySelector('.about-page-container');
+      if (container) {
+        container.appendChild(bgAnimation);
+        
+        // Menos partículas para melhor performance
+        for (let i = 0; i < 30; i++) {
+          const span = document.createElement('span');
+          span.style.width = `${Math.random() * 8 + 2}px`;
+          span.style.height = span.style.width;
+          span.style.left = `${Math.random() * 100}%`;
+          span.style.bottom = '0px'; // Começar de baixo
+          span.style.animationDelay = `${Math.random() * 15}s`;
+          span.style.animationDuration = `${Math.random() * 8 + 12}s`;
+          bgAnimation.appendChild(span);
+        }
       }
     };
     
@@ -47,6 +56,11 @@ function AboutPage() {
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      // Cleanup das partículas se necessário
+      const bgAnimation = document.querySelector('.about-bg-animation');
+      if (bgAnimation) {
+        bgAnimation.remove();
+      }
     };
   }, []);
 
@@ -54,7 +68,8 @@ function AboutPage() {
   const teachers = [
     {
       name: "Pérola da Beauty",
-      flag: "https://flagcdn.com/16x12/mz.png", // Brasil
+      flag: "https://flagcdn.com/16x12/mz.png", // Moçambique
+      flagAlt: "Moçambique",
       role: "Certified TEFL Teacher",
       experience: "6 years",
       specialty: "Business English, General English, Grammar & Academic writing",
@@ -63,6 +78,7 @@ function AboutPage() {
     {
       name: "Boamah Eric Fiifi",
       flag: "https://flagcdn.com/16x12/gh.png", // Gana
+      flagAlt: "Ghana",
       role: "Conversation Specialist",
       experience: "3 years",
       specialty: "Pronunciation, General English & Speaking",
@@ -71,6 +87,7 @@ function AboutPage() {
     {
       name: "Christabel Awako",
       flag: "https://flagcdn.com/16x12/gh.png", // Gana
+      flagAlt: "Ghana",
       role: "Conversation Specialist",
       experience: "2 years",
       specialty: "Grammar, General English & Speaking",
@@ -78,7 +95,8 @@ function AboutPage() {
     },
     {
       name: "Ednaldo Neto",
-      flag: "https://flagcdn.com/16x12/br.png", // Moçambique
+      flag: "https://flagcdn.com/16x12/br.png", // Brasil
+      flagAlt: "Brasil",
       role: "English Teacher",
       experience: "1 year",
       specialty: "Grammar, General English & Speaking",
@@ -87,6 +105,7 @@ function AboutPage() {
     {
       name: "Tanyaradzwa Dean",
       flag: "https://flagcdn.com/16x12/zw.png", // Zimbábue
+      flagAlt: "Zimbabwe",
       role: "English Teacher",
       experience: "4 years",
       specialty: "American Accent Speaking and Grammar",
@@ -95,6 +114,7 @@ function AboutPage() {
     {
       name: "Felesberto Boleke",
       flag: "https://flagcdn.com/16x12/za.png", // África do Sul
+      flagAlt: "South Africa",
       role: "English Teacher",
       experience: "1 year",
       specialty: "Grammar, General English & Speaking",
@@ -186,7 +206,7 @@ function AboutPage() {
           <div className="timeline">
             <div className="timeline-line"></div>
             
-            <div className="timeline-item left animate-section" id="timeline-2010">
+            <div className="timeline-item left animate-section" id="timeline-2023">
               <div className="timeline-content">
                 <h3>2023</h3>
                 <p>
@@ -197,7 +217,7 @@ function AboutPage() {
               <div className="timeline-marker"></div>
             </div>
             
-            <div className="timeline-item right animate-section" id="timeline-2015">
+            <div className="timeline-item right animate-section" id="timeline-2024">
               <div className="timeline-content">
                 <h3>2024</h3>
                 <p>
@@ -208,7 +228,7 @@ function AboutPage() {
               <div className="timeline-marker"></div>
             </div>
             
-            <div className="timeline-item left animate-section" id="timeline-2020">
+            <div className="timeline-item left animate-section" id="timeline-2025">
               <div className="timeline-content">
                 <h3>2025</h3>
                 <p>
@@ -258,18 +278,19 @@ function AboutPage() {
                   <img src={teacher.image} alt={teacher.name} />
                 </div>
                 <div className="teacher-name-container">
+                  <h3>{teacher.name}</h3>
                   <img 
                     src={teacher.flag} 
-                    alt={`Bandeira ${teacher.name}`} 
+                    alt={teacher.flagAlt} 
                     className="teacher-flag"
                     width="24"
                     height="18"
+                    loading="lazy"
                   />
-                  <h3>{teacher.name}</h3>
                 </div>
                 <p className="teacher-role">{teacher.role}</p>
-                <p className="teacher-detail">Experience: {teacher.experience}</p>
-                <p className="teacher-detail">Specialty: {teacher.specialty}</p>
+                <p className="teacher-detail"><strong>Experience:</strong> {teacher.experience}</p>
+                <p className="teacher-detail"><strong>Specialty:</strong> {teacher.specialty}</p>
               </div>
             ))}
           </div>

@@ -296,7 +296,7 @@ function TestimonialsPage() {
           <p>Join thousands of satisfied students on their journey to English fluency</p>
           <Link to="/contact" className="cta-button">
             <span className="button-shine"></span>
-            Schedule Your Free Assessment
+            Schedule Your Free Trial Lesson
           </Link>
         </div>
       </section>

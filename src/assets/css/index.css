@@ -15,11 +15,85 @@
   --accent: #FF6B6B;
 }
 
+/* CORREÇÃO CRÍTICA: Apenas o HTML deve ter scrollbar */
+html {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--blue-primary) rgba(25, 28, 44, 0.5);
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
   color: white;
   overflow-x: hidden;
+  overflow-y: visible; /* MUDANÇA CRÍTICA: não auto */
+  min-height: 100vh;
+}
+
+/* CRÍTICO: Todos os containers principais sem scroll próprio */
+#root,
+.contact-page-container,
+.testimonials-page-container,
+.services-page-container,
+.about-page-container,
+.home-page-container {
+  overflow: visible !important; /* FORÇAR visible */
+  height: auto !important; /* NUNCA altura fixa */
+  min-height: auto !important; /* Remover min-height problemático */
+  width: 100%;
+}
+
+/* Seções SEM scroll individual */
+section,
+.hero-section,
+.contact-section,
+.testimonials-section,
+.services-section,
+.about-section {
+  overflow: visible !important; /* CRÍTICO: visible em todas */
+  height: auto !important; /* Altura automática */
+  width: 100%;
+  position: relative;
+}
+
+/* Containers internos também sem scroll */
+.contact-container,
+.testimonials-container,
+.services-container,
+.about-container,
+.hero-container {
+  overflow: visible !important;
+  height: auto !important;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* IMPORTANTE: Divs gerais sem scroll */
+div {
+  overflow: visible !important;
+  overflow-x: hidden; /* Apenas horizontal escondido */
+}
+
+/* EXCEÇÕES: Apenas estes elementos podem ter scroll */
+textarea,
+.modal-content,
+.dropdown-menu,
+pre,
+code {
+  overflow: auto !important; /* Apenas quando necessário */
+}
+
+/* Remover qualquer altura/scroll de containers específicos */
+.main-content,
+.page-content,
+.section-content,
+.container {
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
 }
 
 /* Animação de fundo com efeito de partículas */
@@ -31,6 +105,7 @@ body {
   height: 100%;
   z-index: -1;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .bg-animation span {
@@ -46,7 +121,7 @@ body {
 
 @keyframes float {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(100vh) rotate(0deg);
     opacity: 0;
   }
   10% {
@@ -56,38 +131,172 @@ body {
     opacity: 1;
   }
   100% {
-    transform: translateY(-1000px) rotate(720deg);
+    transform: translateY(-100px) rotate(720deg);
     opacity: 0;
   }
 }
 
 .text-gradient {
-    background: linear-gradient(90deg, var(--blue-primary), var(--blue-light));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    /* Remova a linha abaixo que está causando o erro */
-    /* text-fill-color: transparent; */
-  }
+  background: linear-gradient(90deg, var(--blue-primary), var(--blue-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  width: 100%;
+  overflow: visible !important; /* CRÍTICO */
 }
 
+/* Scrollbar única personalizada */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(25, 28, 44, 0.5);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--blue-primary), var(--blue-dark));
+  border-radius: 6px;
+  border: 2px solid rgba(25, 28, 44, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--blue-light), var(--blue-primary));
+}
+
+/* Animações */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
 }
 
 @keyframes slideIn {
-  from { transform: translateX(-50px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from { 
+    transform: translateX(-50px); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateX(0); 
+    opacity: 1; 
+  }
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% { 
+    transform: scale(1); 
+  }
+  50% { 
+    transform: scale(1.05); 
+  }
+  100% { 
+    transform: scale(1); 
+  }
+}
+
+/* Correções tipográficas */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+  word-wrap: break-word;
+}
+
+p {
+  margin-bottom: 1em;
+  word-wrap: break-word;
+}
+
+/* Imagens responsivas */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Inputs sem problemas de layout */
+input, textarea, select {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Botões base */
+.btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* FORÇA REMOÇÃO de altura fixa em qualquer elemento */
+* {
+  max-height: none !important; /* Remove altura máxima problemática */
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+  
+  .bg-animation {
+    display: none;
+  }
+}
+
+/* Mobile responsivo */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  #root {
+    width: 100%;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  .container {
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+}
+
+/* FORÇA FINAL: Nenhum elemento pode ter scroll próprio exceto html */
+*:not(html):not(textarea):not(.modal-content):not(pre):not(code) {
+  overflow-y: visible !important;
 }
