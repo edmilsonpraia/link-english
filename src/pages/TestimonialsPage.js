@@ -254,37 +254,6 @@ function TestimonialsPage() {
         </div>
       </section>
 
-      {/* Video Testimonial Section */}
-      <section className="video-testimonial-section animate-section">
-        <div className="testimonials-container">
-          <h2>Video Testimonials</h2>
-          <p className="section-description">
-            Hear directly from our students about their journey to English fluency
-          </p>
-          
-          <div className="video-grid">
-            <div className="video-card">
-              <div className="video-placeholder">
-                <div className="play-button">▶</div>
-                <p>Alex's Journey: From Beginner to Fluent in 6 Months</p>
-              </div>
-            </div>
-            <div className="video-card">
-              <div className="video-placeholder">
-                <div className="play-button">▶</div>
-                <p>Maria's IELTS Success Story</p>
-              </div>
-            </div>
-            <div className="video-card">
-              <div className="video-placeholder">
-                <div className="play-button">▶</div>
-                <p>Business English: How John Landed His Dream Job</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Call to Action */}
       <section className="testimonials-cta-section animate-section">
         <div className="testimonials-container">

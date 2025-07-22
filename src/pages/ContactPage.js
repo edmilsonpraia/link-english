@@ -74,13 +74,13 @@ function ContactPage() {
     {
       icon: '✉️',
       title: 'Email',
-      details: ['info@linkenglish.com', 'admissions@linkenglish.com'],
+      details: ['linkenglishru@gmail.com'],
       hours: 'We respond within 24 hours'
     },
     {
       icon: '📍',
       title: 'Location',
-      details: ['123 Language Avenue', 'New York, NY 10001', 'United States'],
+      details: ['Bakalinskaya 25', 'Ufa', 'Russia'],
       hours: 'Campus open: 7am - 10pm daily'
     }
   ];
@@ -91,13 +91,10 @@ function ContactPage() {
       question: "How do I know which program is right for me?",
       answer: "We offer a complimentary placement test and consultation to assess your current level and discuss your goals. Our academic advisors will then recommend the most suitable program tailored to your needs."
     },
-    {
-      question: "Can I schedule a campus tour before enrolling?",
-      answer: "Absolutely! We encourage prospective students to visit our campus. You can schedule a tour through our website or by calling our admissions office."
-    },
+    
     {
       question: "What payment options do you offer?",
-      answer: "We accept various payment methods including credit/debit cards, bank transfers, and installment plans. We also offer scholarships and discounts for certain programs."
+      answer: "We accept various payment methods including bank transfers (Sber, T-Bank, Millennium Bim, BCI, Bai,BPI), and othres, such as: M-pesa, E-mola and Paypal."
     },
     {
       question: "How quickly can I expect to see improvement?",
@@ -259,25 +256,7 @@ function ContactPage() {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="map-section animate-section">
-        <div className="contact-container">
-          <h2>Visit Our Campus</h2>
-          <p className="section-description">
-            Experience our state-of-the-art facilities and meet our dedicated team
-          </p>
-          
-          <div className="map-container">
-            <div className="map-placeholder">
-              <div className="map-overlay">
-                <div className="map-pin">📍</div>
-                <p>Link English Language School</p>
-                <button className="map-button">View on Google Maps</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* FAQ Section */}
       <section className="faq-section animate-section">

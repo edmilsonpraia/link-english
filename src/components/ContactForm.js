@@ -130,7 +130,7 @@ function ContactForm() {
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>✉️</span>
-              support@hello.com
+              linkenglishru@gmail.com
             </p>
             <p style={{ 
               display: 'flex', 
@@ -148,7 +148,7 @@ function ContactForm() {
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>📞</span>
-              646-675-5974
+              +7 996 580 64 20
             </p>
           </div>
           

@@ -77,11 +77,11 @@ function AboutPage() {
       image: teacherImage3
     },
     {
-      name: "Elena Rodriguez",
+      name: "Ednaldo Neto",
       flag: "https://flagcdn.com/16x12/br.png", // Moçambique
-      role: "Academic Director",
-      experience: "15 years",
-      specialty: "Grammar & Academic Writing",
+      role: "English Teacher",
+      experience: "1 year",
+      specialty: "Grammar, General English & Speaking",
       image: teacherImage4
     },
     {
@@ -213,7 +213,7 @@ function AboutPage() {
                 <h3>2025</h3>
                 <p>
                   Launched our advanced digital platform with AI-assisted learning
-                  and celebrated reaching 500 successful students.
+                  and celebrated reaching 1500 successful students.
                 </p>
               </div>
               <div className="timeline-marker"></div>
