@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/css/ServicesPage.css';
 
 function ServicesPage() {
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     // Ativando animações baseadas em scroll
     const handleScroll = () => {
@@ -26,39 +29,86 @@ function ServicesPage() {
     };
   }, []);
 
+  // Função para abrir o modal
+  const openModal = (course) => {
+    setSelectedCourse(course);
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden'; // Previne scroll da página
+  };
+
+  // Função para fechar o modal
+  const closeModal = () => {
+    setSelectedCourse(null);
+    setIsModalOpen(false);
+    document.body.style.overflow = 'unset'; // Restaura scroll da página
+  };
+
   // Cursos principais
   const mainCourses = [
     {
       title: "General English",
       description: "Develop well-rounded language skills with our comprehensive program covering speaking, listening, reading, and writing.",
       level: "Beginner to Advanced",
-      duration: "10-48 weeks",
+      duration: "16-24 weeks",
       features: ["Small class sizes", "Weekly progress reports", "Regular speaking practice"],
-      icon: "📚"
+      icon: "📚",
+      pricing: {
+        group: { price: "$199", period: "per month" },
+        individual: { price: "$349", period: "per month" },
+        online: { price: "$149", period: "per month" }
+      }
     },
     {
       title: "Business English",
       description: "Master professional communication for international business settings, including presentations, negotiations, and correspondence.",
       level: "Intermediate to Advanced",
-      duration: "8-24 weeks",
+      duration: "16-20 weeks",
       features: ["Industry-specific vocabulary", "Business case studies", "Mock meetings"],
-      icon: "💼"
+      icon: "💼",
+      pricing: {
+        group: { price: "$249", period: "per month" },
+        individual: { price: "$399", period: "per month" },
+        online: { price: "$199", period: "per month" }
+      }
     },
     {
-      title: "Exam Preparation",
-      description: "Targeted preparation for TOEFL, IELTS, Cambridge, and other internationally recognized English proficiency exams.",
-      level: "Intermediate to Advanced",
-      duration: "6-16 weeks",
-      features: ["Practice tests", "Exam strategies", "One-on-one feedback"],
-      icon: "📝"
+      title: "Pronunciation Course",
+      description: "Sound clear and confident, not lost in translation. Speak naturally with stress/intonation like a native.",
+      level: "All Levels",
+      duration: "8-12 weeks",
+      features: ["Video Lessons", "Personalized feedback", "Access to our Sounds Library"],
+      icon: "🗣️",
+      pricing: {
+        group: { price: "$179", period: "per month" },
+        individual: { price: "$299", period: "per month" },
+        online: { price: "$129", period: "per month" }
+      }
     },
     {
       title: "Conversational English",
       description: "Focus on speaking fluency and listening comprehension in a supportive environment with native speakers.",
       level: "All Levels",
-      duration: "4-24 weeks",
+      duration: "10-14 weeks",
       features: ["Real-world topics", "Pronunciation workshops", "Cultural discussions"],
-      icon: "🗣️"
+      icon: "🗣️",
+      pricing: {
+        group: { price: "$199", period: "per month" },
+        individual: { price: "$329", period: "per month" },
+        online: { price: "$149", period: "per month" }
+      }
+    },
+    {
+      title: "Email Writing",
+      description: "Write Clear, Polished Emails in Minutes.  Avoid confusing or rude tones with natural-sounding phrases. Master professional etiquette",
+      level: "Intermediate to Advanced",
+      duration: "12-16 weeks",
+      features: ["Polished emails", "CVs and cover letters"],
+      icon: "📝",
+      pricing: {
+        group: { price: "$159", period: "per month" },
+        individual: { price: "$279", period: "per month" },
+        online: { price: "$119", period: "per month" }
+      }
     }
   ];
 
@@ -90,23 +140,23 @@ function ServicesPage() {
   // Recursos especiais
   const specialResources = [
     {
-      title: "Conversation Club",
+      title: "Speaking Club",
       description: "Weekly sessions where students practice English in a relaxed social setting with various discussion topics.",
       frequency: "Weekly"
     },
     {
-      title: "Language Lab",
-      description: "State-of-the-art facility with audio-visual resources for pronunciation practice and listening skills.",
-      frequency: "Open daily"
+      title: "Grammar Club",
+      description: "Master tricky English grammar in a fun, supportive group! Each week, we tackle a new topic through clear explanations, interactive exercises, and real-life practice",
+      frequency: "Weekly"
     },
     {
-      title: "Cultural Excursions",
-      description: "Monthly outings to local points of interest with guided discussions in English.",
-      frequency: "Monthly"
+      title: "Consultation & Coaching",
+      description: "Elevate your teaching skills with personalized guidance! Whether you're new to teaching or looking to refine your methods, we offer one-on-one consultations to help you",
+      frequency: "Daily"
     },
     {
-      title: "Writing Workshops",
-      description: "Specialized sessions focusing on different writing styles and formats with personalized feedback.",
+      title: "Masterclass & Workshops",
+      description: "Whether you're a student, professional, or lifelong learner, our classes and workshops are designed to help you speak, write, and think in English with ease.",
       frequency: "Bi-weekly"
     }
   ];
@@ -197,36 +247,12 @@ function ServicesPage() {
                     ))}
                   </ul>
                 </div>
-                <a href="#contact" className="course-button">Learn More</a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Class Types Section */}
-      <section className="class-types-section animate-section">
-        <div className="services-container">
-          <h2>Learning Formats</h2>
-          <p className="section-description">
-            Choose the learning environment that best suits your schedule and learning style
-          </p>
-
-          <div className="class-types-grid">
-            {classTypes.map((type, index) => (
-              <div key={index} className="class-type-card">
-                <div className="class-type-image">
-                  <img src={type.image} alt={type.title} />
-                </div>
-                <div className="class-type-content">
-                  <h3>{type.title}</h3>
-                  <p>{type.description}</p>
-                  <div className="class-type-details">
-                    <p><span>Schedule:</span> {type.schedule}</p>
-                    <p><span>Class Size:</span> {type.size}</p>
-                  </div>
-                  <a href="#contact" className="class-type-button">Select This Format</a>
-                </div>
+                <button 
+                  onClick={() => openModal(course)} 
+                  className="course-button"
+                >
+                  Learn More
+                </button>
               </div>
             ))}
           </div>
@@ -253,38 +279,6 @@ function ServicesPage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="pricing-section animate-section">
-        <div className="services-container">
-          <h2>Pricing Plans</h2>
-          <p className="section-description">
-            Flexible options to accommodate different learning needs and budgets
-          </p>
-
-          <div className="pricing-grid">
-            {pricingPlans.map((plan, index) => (
-              <div 
-                key={index} 
-                className={`pricing-card ${plan.recommended ? 'recommended' : ''}`}
-              >
-                {plan.recommended && <div className="recommended-badge">Most Popular</div>}
-                <h3>{plan.name}</h3>
-                <div className="pricing-amount">
-                  <span className="price">{plan.price}</span>
-                  <span className="period">{plan.period}</span>
-                </div>
-                <ul className="pricing-features">
-                  {plan.features.map((feature, i) => (
-                    <li key={i}>{feature}</li>
-                  ))}
-                </ul>
-                <a href="#contact" className="pricing-button">Select Plan</a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <section className="faq-section animate-section">
         <div className="services-container">
@@ -293,10 +287,6 @@ function ServicesPage() {
             <div className="faq-item">
               <h3>How do I determine my current English level?</h3>
               <p>We offer a complimentary placement test to all new students. This assessment evaluates your speaking, listening, reading, and writing skills to determine the most appropriate starting level.</p>
-            </div>
-            <div className="faq-item">
-              <h3>Can I switch between online and in-person classes?</h3>
-              <p>Yes, our flexible program allows students to choose hybrid learning options. You can discuss your preferences with your coordinator to create a schedule that works for you.</p>
             </div>
             <div className="faq-item">
               <h3>How long will it take to become fluent?</h3>
@@ -321,6 +311,79 @@ function ServicesPage() {
           </Link>
         </div>
       </section>
+
+      {/* Modal para detalhes do curso */}
+      {isModalOpen && selectedCourse && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal}>&times;</button>
+            
+            <div className="modal-header">
+              <div className="modal-icon">{selectedCourse.icon}</div>
+              <h2>{selectedCourse.title}</h2>
+            </div>
+
+            <div className="modal-body">
+              <div className="modal-section">
+                <h3>Course Options & Pricing</h3>
+                <div className="pricing-options">
+                  <div className="pricing-card-modal">
+                    <h4>👥 Group Classes</h4>
+                    <div className="price">{selectedCourse.pricing.group.price}</div>
+                    <div className="period">{selectedCourse.pricing.group.period}</div>
+                    <ul>
+                      <li>6-12 students per class</li>
+                      <li>Interactive learning environment</li>
+                      <li>Collaborative practice</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="pricing-card-modal popular">
+                    <div className="popular-badge">Most Popular</div>
+                    <h4>👤 Individual Lessons</h4>
+                    <div className="price">{selectedCourse.pricing.individual.price}</div>
+                    <div className="period">{selectedCourse.pricing.individual.period}</div>
+                    <ul>
+                      <li>Personalized instruction</li>
+                      <li>Flexible scheduling</li>
+                      <li>Customized curriculum</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="pricing-card-modal">
+                    <h4>💻 Online Learning</h4>
+                    <div className="price">{selectedCourse.pricing.online.price}</div>
+                    <div className="period">{selectedCourse.pricing.online.period}</div>
+                    <ul>
+                      <li>Study from anywhere</li>
+                      <li>Interactive virtual classroom</li>
+                      <li>24/7 platform access</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="modal-section">
+                <h3>Course Details</h3>
+                <div className="course-info-modal">
+                  <p><strong>Level:</strong> {selectedCourse.level}</p>
+                  <p><strong>Duration:</strong> {selectedCourse.duration}</p>
+                  <p><strong>Description:</strong> {selectedCourse.description}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="modal-footer">
+              <Link to="/contact" className="modal-button primary" onClick={closeModal}>
+                Contact Us
+              </Link>
+              <Link to="/contact" className="modal-button secondary" onClick={closeModal}>
+                Enroll Now
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

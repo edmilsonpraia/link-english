@@ -69,61 +69,47 @@ function TestimonialsPage() {
   // Dados de todos os depoimentos
   const allTestimonials = [
     {
-      name: "Carlos Rodriguez",
+      name: "Zongo Armando",
       program: "Business English",
-      country: "Mexico",
-      text: "The business English program helped me secure a promotion at my international company. The negotiation and presentation skills I learned are used daily in my work.",
+      country: "Angola",
+      text: "A Link English é uma instituição séria e profissional, com metodologias eficazes e dinâmicas para o ensino do inglês. Em pouco tempo, os alunos notam evolução na fluência e na compreensão auditiva. A estratégia de interação com nativos é excelente, pois aproxima o idioma do contexto real e promove debates. É a escolha certa para quem deseja falar inglês como um nativo.",
       rating: 5
     },
     {
-      name: "Emma Watson",
-      program: "TOEFL Preparation",
-      country: "France",
-      text: "I needed a high TOEFL score for my master's application, and Link English delivered. Their practice tests were almost identical to the actual exam.",
+      name: "Elvira",
+      program: "General English",
+      country: "Russia",
+      text: "Искали репетитора — нашли лучшего. Цель: Подтянуть уровень языка у ребенка (школьная программа + разговорная практика) Остановились на этом преподавателе по рекомендации друзей— и не зря! Совет другим родителям: Если хотите реальных результатов без зубрежки — вам сюда!.",
       rating: 5
     },
     {
-      name: "Liu Wei",
-      program: "Conversational English",
-      country: "China",
-      text: "The conversation classes with native speakers helped me overcome my fear of speaking English. Now I can communicate clearly during my business trips.",
-      rating: 4
-    },
-    {
-      name: "Priya Patel",
-      program: "Online Group Classes",
-      country: "India",
-      text: "Despite the time difference, Link English's flexible schedule allowed me to attend classes after work. The online platform is intuitive and interactive.",
+      name: "Laura Albuquerque",
+      program: "General English",
+      country: "Moçambique",
+      text: "O que mais gosto nas aulas da Link English é a imersão no inglês – mesmo cometendo erros, falamos apenas inglês, e a professora corrige, o que acelera o aprendizado. Antes, eu era tímida e tinha medo de errar, mas agora já me pego conversando naturalmente. Em apenas três meses, a evolução é clara. Recomendo a Link English para quem quer aprender inglês rápido e com confiança.",
       rating: 5
     },
     {
-      name: "Olaf Svensson",
-      program: "Private Lessons",
-      country: "Sweden",
-      text: "My instructor tailored each lesson to my specific needs in medical English. Now I can communicate effectively with international patients.",
+      name: "Uvarova Kira",
+      program: "General English",
+      country: "Russia",
+      text: "Занимаемся с преподавателем около 1,5 месяцев. Заранее обсудили стоимость и график. После тестирования уровня подобрали учебник. 70% урока проходит на английском, чтобы ребёнок привыкал говорить без страха. Много игровых заданий — кроссворды, песни и т.д. Дочке очень нравится: она с удовольствием занимается на уроках и делает домашку. Уже виден прогресс в словарном запасе и разговорной речи.",
       rating: 5
     },
     {
-      name: "Ana Costa",
-      program: "Intensive Course",
-      country: "Portugal",
-      text: "The 4-week intensive course was challenging but incredibly effective. My English improved more in one month than in years of traditional classes.",
-      rating: 4
-    },
-    {
-      name: "Ibrahim Al-Farsi",
+      name: "Angelo Ferreira",
       program: "Business English",
-      country: "UAE",
-      text: "The specialized finance vocabulary module was exactly what I needed for my banking career. The role-playing exercises prepared me well for real-world situations.",
+      country: "Mozambique",
+      text: "I am businessman and you know businessman without English you can not go ahead. When I started my English lesson I didn’t know the many secret to learn English but today I am speaking not perfect but I have seen that my English is improving day by day and until end of the year my English will be another thing grace the English lesson I have been receiving.",
       rating: 5
     },
     {
-      name: "Sophie Müller",
-      program: "Academic English",
-      country: "Germany",
-      text: "The academic writing course helped me publish my research in English-language journals. The instructor's feedback was precise and constructive.",
+      name: "Tomane",
+      program: "English Speaking Club",
+      country: "Mozambique",
+      text: "Actually it was my first time attending and I'd like to have more sections like this. I really loved the methodology used and I was able to connect with partners from different parts of the world, in a nutshell, it was very insightful.",
       rating: 5
-    }
+    },
   ];
 
   // Dados de resultados e conquistas
@@ -140,7 +126,7 @@ function TestimonialsPage() {
     },
     {
       category: "Global Community",
-      stats: "10,000+",
+      stats: "1500+",
       description: "students from over 45 countries have completed our programs"
     },
     {

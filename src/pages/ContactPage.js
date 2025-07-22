@@ -180,10 +180,13 @@ function ContactPage() {
                     >
                       <option value="general-english">General English</option>
                       <option value="business-english">Business English</option>
-                      <option value="exam-preparation">Exam Preparation</option>
+                      <option value="exam-preparation">Speaking Club</option>
+                      <option value="exam-preparation">Grammar Club</option>
                       <option value="conversation">Conversation Classes</option>
-                      <option value="private-lessons">Private Lessons</option>
-                      <option value="other">Other Inquiry</option>
+                      <option value="private-lessons">Individual Lessons</option>
+                      <option value="private-lessons">Consultation & Coaching</option>
+                      <option value="private-lessons">Email Writing </option>
+                      <option value="other">Others</option>
                     </select>
                   </div>
                   
