@@ -10,7 +10,7 @@ function TestimonialsSection() {
         textAlign: 'center'
       }}>
         <div style={{ marginBottom: '2rem' }}>
-          <p>Sarah Johnson</p>
+          <p>Edmilson Delfim Praia</p>
         </div>
         <p style={{ 
           fontSize: '1.5rem', 
