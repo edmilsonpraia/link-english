@@ -126,17 +126,17 @@ function TestimonialsPage() {
     {
       category: "Career Advancement",
       stats: "82%",
-      description: "of business English students reported career advancement within a year"
+      description: "Of business English students reported career advancement within a year"
     },
     {
       category: "Global Community",
       stats: "2000+",
-      description: "students from over 45 countries have completed our programs"
+      description: "Students from over 15 countries have completed our programs"
     },
     {
       category: "Speaking Confidence",
       stats: "89%",
-      description: "increase in speaking confidence reported by conversation class students"
+      description: "Increase in speaking confidence reported by conversation class students"
     }
   ];
 
