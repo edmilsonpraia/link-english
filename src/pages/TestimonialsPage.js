@@ -122,19 +122,15 @@ function TestimonialsPage() {
 
   // Dados de resultados e conquistas
   const successStories = [
-    {
-      category: "Academic Success",
-      stats: "94%",
-      description: "of our IELTS/TOEFL students achieve or exceed their target scores"
-    },
+  
     {
       category: "Career Advancement",
-      stats: "78%",
+      stats: "82%",
       description: "of business English students reported career advancement within a year"
     },
     {
       category: "Global Community",
-      stats: "1500+",
+      stats: "2000+",
       description: "students from over 45 countries have completed our programs"
     },
     {
