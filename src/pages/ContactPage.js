@@ -12,6 +12,11 @@ function ContactPage() {
     preferredContact: 'email'
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  // URL do Formspree para Link English Contact Form
+  const FORMSPREE_URL = "https://formspree.io/f/xkgzvkwb";
 
   useEffect(() => {
     // Animações baseadas em scroll
@@ -43,24 +48,81 @@ function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulação de envio do formulário
-    setTimeout(() => {
-      setSubmitted(true);
-      // Reset do formulário após alguns segundos
-      setTimeout(() => {
-        setSubmitted(false);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          program: 'general-english',
-          message: '',
-          preferredContact: 'email'
-        });
-      }, 5000);
-    }, 1000);
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          program: formData.program,
+          message: formData.message,
+          preferredContact: formData.preferredContact,
+          // Campos extras para organização no Formspree
+          _subject: `New contact from Link English - ${formData.name}`,
+          _replyto: formData.email
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        // Reset do formulário após alguns segundos
+        setTimeout(() => {
+          setSubmitted(false);
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            program: 'general-english',
+            message: '',
+            preferredContact: 'email'
+          });
+        }, 5000);
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setError('Failed to send message. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Newsletter form handler
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    
+    try {
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          type: 'newsletter',
+          _subject: 'Newsletter Subscription - Link English'
+        }),
+      });
+
+      if (response.ok) {
+        alert('Successfully subscribed to newsletter!');
+        e.target.reset();
+      }
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      alert('Failed to subscribe. Please try again.');
+    }
   };
 
   // Informações de contato
@@ -91,10 +153,9 @@ function ContactPage() {
       question: "How do I know which program is right for me?",
       answer: "We offer a complimentary placement test and consultation to assess your current level and discuss your goals. Our academic advisors will then recommend the most suitable program tailored to your needs."
     },
-    
     {
       question: "What payment options do you offer?",
-      answer: "We accept various payment methods including bank transfers (Sber, T-Bank, Millennium Bim, BCI, Bai,BPI), and othres, such as: M-pesa, E-mola and Paypal."
+      answer: "We accept various payment methods including bank transfers (Sber, T-Bank, Millennium Bim, BCI, Bai,BPI), and others, such as: M-pesa, E-mola and Paypal."
     },
     {
       question: "How quickly can I expect to see improvement?",
@@ -130,6 +191,18 @@ function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="contact-form">
+                  {error && (
+                    <div className="error-message" style={{
+                      background: '#ffebee',
+                      color: '#c62828',
+                      padding: '1rem',
+                      borderRadius: '0.5rem',
+                      marginBottom: '1rem'
+                    }}>
+                      {error}
+                    </div>
+                  )}
+                  
                   <div className="form-group">
                     <label htmlFor="name">Full Name</label>
                     <input
@@ -140,6 +213,7 @@ function ContactPage() {
                       onChange={handleChange}
                       placeholder="Your full name"
                       required
+                      disabled={loading}
                     />
                   </div>
                   
@@ -154,6 +228,7 @@ function ContactPage() {
                         onChange={handleChange}
                         placeholder="Your email address"
                         required
+                        disabled={loading}
                       />
                     </div>
                     
@@ -166,6 +241,7 @@ function ContactPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="Your phone number"
+                        disabled={loading}
                       />
                     </div>
                   </div>
@@ -177,15 +253,16 @@ function ContactPage() {
                       name="program"
                       value={formData.program}
                       onChange={handleChange}
+                      disabled={loading}
                     >
                       <option value="general-english">General English</option>
                       <option value="business-english">Business English</option>
-                      <option value="exam-preparation">Speaking Club</option>
-                      <option value="exam-preparation">Grammar Club</option>
+                      <option value="speaking-club">Speaking Club</option>
+                      <option value="grammar-club">Grammar Club</option>
                       <option value="conversation">Conversation Classes</option>
                       <option value="private-lessons">Individual Lessons</option>
-                      <option value="private-lessons">Consultation & Coaching</option>
-                      <option value="private-lessons">Email Writing </option>
+                      <option value="consultation-coaching">Consultation & Coaching</option>
+                      <option value="email-writing">Email Writing</option>
                       <option value="other">Others</option>
                     </select>
                   </div>
@@ -200,6 +277,7 @@ function ContactPage() {
                       placeholder="Tell us how we can help you"
                       rows="5"
                       required
+                      disabled={loading}
                     ></textarea>
                   </div>
                   
@@ -213,6 +291,7 @@ function ContactPage() {
                           value="email"
                           checked={formData.preferredContact === 'email'}
                           onChange={handleChange}
+                          disabled={loading}
                         />
                         <span>Email</span>
                       </label>
@@ -223,14 +302,17 @@ function ContactPage() {
                           value="phone"
                           checked={formData.preferredContact === 'phone'}
                           onChange={handleChange}
+                          disabled={loading}
                         />
                         <span>Phone</span>
                       </label>
                     </div>
                   </div>
                   
-                  <button type="submit" className="submit-button">
-                    <span className="button-text">Send Message</span>
+                  <button type="submit" className="submit-button" disabled={loading}>
+                    <span className="button-text">
+                      {loading ? 'Sending...' : 'Send Message'}
+                    </span>
                     <span className="button-icon">→</span>
                   </button>
                 </form>
@@ -259,8 +341,6 @@ function ContactPage() {
         </div>
       </section>
 
-      
-
       {/* FAQ Section */}
       <section className="faq-section animate-section">
         <div className="contact-container">
@@ -287,8 +367,13 @@ function ContactPage() {
             <h2>Subscribe to Our Newsletter</h2>
             <p>Stay updated with our latest courses, events, and language learning tips</p>
             
-            <form className="newsletter-form">
-              <input type="email" placeholder="Your email address" />
+            <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
+              <input 
+                type="email" 
+                name="email"
+                placeholder="Your email address" 
+                required 
+              />
               <button type="submit">Subscribe</button>
             </form>
           </div>

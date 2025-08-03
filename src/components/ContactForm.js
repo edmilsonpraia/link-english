@@ -7,6 +7,12 @@ function ContactForm() {
     email: '',
     message: ''
   });
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+
+  // URL do Formspree para Link English Contact Form
+  const FORMSPREE_URL = "https://formspree.io/f/xkgzvkwb";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,12 +22,44 @@ function ContactForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Aqui você adicionaria a lógica para enviar o formulário
-    alert('Thanks for your message! We will get back to you soon.');
-    setState({ name: '', email: '', message: '' });
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          // Campos extras para organização no Formspree
+          _subject: `New contact from Link English - ${formData.name}`,
+          _replyto: formData.email
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setState({ name: '', email: '', message: '' });
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setError('Failed to send message. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -151,6 +189,34 @@ function ContactForm() {
               +7 996 580 64 20
             </p>
           </div>
+
+          {/* Success Message */}
+          {submitted && (
+            <div style={{
+              background: 'rgba(76, 175, 80, 0.1)',
+              border: '1px solid rgba(76, 175, 80, 0.3)',
+              borderRadius: '0.5rem',
+              padding: '1rem',
+              marginBottom: '1.5rem',
+              color: '#4caf50'
+            }}>
+              ✓ Thanks for your message! We will get back to you soon.
+            </div>
+          )}
+
+          {/* Error Message */}
+          {error && (
+            <div style={{
+              background: 'rgba(244, 67, 54, 0.1)',
+              border: '1px solid rgba(244, 67, 54, 0.3)',
+              borderRadius: '0.5rem',
+              padding: '1rem',
+              marginBottom: '1.5rem',
+              color: '#f44336'
+            }}>
+              {error}
+            </div>
+          )}
           
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: '1.5rem' }}>
@@ -168,6 +234,8 @@ function ContactForm() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your name here" 
+                required
+                disabled={loading}
                 style={{ 
                   width: '100%', 
                   padding: '0.75rem 1rem', 
@@ -176,7 +244,8 @@ function ContactForm() {
                   backgroundColor: 'rgba(255, 255, 255, 0.05)',
                   color: 'white',
                   fontSize: '1rem',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  opacity: loading ? 0.6 : 1
                 }} 
               />
             </div>
@@ -196,6 +265,8 @@ function ContactForm() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Your email here" 
+                required
+                disabled={loading}
                 style={{ 
                   width: '100%', 
                   padding: '0.75rem 1rem', 
@@ -204,7 +275,8 @@ function ContactForm() {
                   backgroundColor: 'rgba(255, 255, 255, 0.05)',
                   color: 'white',
                   fontSize: '1rem',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  opacity: loading ? 0.6 : 1
                 }} 
               />
             </div>
@@ -224,6 +296,8 @@ function ContactForm() {
                 onChange={handleChange}
                 placeholder="Your message here" 
                 rows="5" 
+                required
+                disabled={loading}
                 style={{ 
                   width: '100%', 
                   padding: '0.75rem 1rem', 
@@ -233,29 +307,36 @@ function ContactForm() {
                   color: 'white',
                   fontSize: '1rem',
                   resize: 'vertical',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  opacity: loading ? 0.6 : 1
                 }} 
               ></textarea>
             </div>
             
             <button 
               type="submit" 
+              disabled={loading}
               style={{ 
-                background: 'linear-gradient(90deg, #4F9EE8, #3B7BC0)',
+                background: loading 
+                  ? 'rgba(79, 158, 232, 0.5)' 
+                  : 'linear-gradient(90deg, #4F9EE8, #3B7BC0)',
                 color: 'white', 
                 padding: '0.9rem 2rem', 
                 borderRadius: '0.5rem',
                 border: 'none',
-                cursor: 'pointer',
+                cursor: loading ? 'not-allowed' : 'pointer',
                 fontSize: '1rem',
                 fontWeight: '600',
-                boxShadow: '0 8px 20px rgba(79, 158, 232, 0.3)',
+                boxShadow: loading 
+                  ? 'none' 
+                  : '0 8px 20px rgba(79, 158, 232, 0.3)',
                 transition: 'all 0.3s ease',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                opacity: loading ? 0.7 : 1
               }}
             >
-              Send message
+              {loading ? 'Sending...' : 'Send message'}
             </button>
           </form>
         </div>
