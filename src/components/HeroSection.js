@@ -37,6 +37,15 @@ function HeroSection() {
         <p className="hero-subtitle">
           Elevate your language skills and unlock a world of opportunities through immersive learning
         </p>
+
+        {/* Botão English Test */}
+        <div className="hero-test-button">
+          <Link to="/english-test" className="btn btn-test">
+            <span className="test-icon">📋</span>
+            English Test
+            <span className="btn-arrow">→</span>
+          </Link>
+        </div>
         
         <div className="service-cards">
           {/* Advance Card */}

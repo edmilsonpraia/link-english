@@ -8,6 +8,7 @@ import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import ContactPage from './pages/ContactPage';
 import TestimonialsPage from './pages/TestimonialsPage';
+import EnglishTestPage from './pages/EnglishTestPage'; // Nova importação
 import './assets/css/App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/testimonials" element={<TestimonialsPage />} />
+            <Route path="/english-test" element={<EnglishTestPage />} /> {/* Nova rota */}
           </Routes>
         </main>
         <Footer />
