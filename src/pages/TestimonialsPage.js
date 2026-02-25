@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../LanguageContext';
+import translations from '../translations';
 import '../assets/css/TestimonialsPage.css';
 
 // Dados dos depoimentos em destaque - movido para fora do componente
@@ -50,7 +52,8 @@ const featuredTestimonials = [
 
 function TestimonialsPage() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState({});
+  const { language } = useLanguage();
+  const t = translations[language].testimonialsPage;
   useEffect(() => {
     // Animações baseadas em scroll APENAS
     const handleScroll = () => {
@@ -122,22 +125,9 @@ function TestimonialsPage() {
 
   // Dados de resultados e conquistas
   const successStories = [
-  
-    {
-      category: "Career Advancement",
-      stats: "82%",
-      description: "Of business English students reported career advancement within a year"
-    },
-    {
-      category: "Global Community",
-      stats: "2000+",
-      description: "Students from over 15 countries have completed our programs"
-    },
-    {
-      category: "Speaking Confidence",
-      stats: "89%",
-      description: "Increase in speaking confidence reported by conversation class students"
-    }
+    { category: t.careerAdvancement, stats: t.careerAdvancementStat, description: t.careerAdvancementDesc },
+    { category: t.globalCommunity, stats: t.globalCommunityStat, description: t.globalCommunityDesc },
+    { category: t.speakingConfidence, stats: t.speakingConfidenceStat, description: t.speakingConfidenceDesc }
   ];
 
   // Renderizar estrelas baseadas na avaliação
@@ -177,9 +167,9 @@ function TestimonialsPage() {
       <section className="testimonials-hero-section animate-section">
         <div className="hero-background"></div>
         <div className="testimonials-container">
-          <h1 className="gradient-text">Student Success Stories</h1>
+          <h1 className="gradient-text">{t.heroTitle}</h1>
           <p className="testimonials-subtitle">
-            Hear from our global community of English learners about their transformative experiences
+            {t.heroSubtitle}
           </p>
         </div>
       </section>
@@ -187,7 +177,7 @@ function TestimonialsPage() {
       {/* Featured Testimonials Carousel */}
       <section className="featured-testimonials-section animate-section">
         <div className="testimonials-container">
-          <h2>Featured Testimonials</h2>
+          <h2>{t.featuredTitle}</h2>
           
           <div className="testimonial-carousel">
             {/* Botão Anterior */}
@@ -242,9 +232,9 @@ function TestimonialsPage() {
       {/* Success Stories */}
       <section className="success-stories-section animate-section">
         <div className="testimonials-container">
-          <h2>The Link English Impact</h2>
+          <h2>{t.impactTitle}</h2>
           <p className="section-description">
-            Our students achieve remarkable results through our proven teaching methodology
+            {t.impactSubtitle}
           </p>
           
           <div className="success-grid">
@@ -262,9 +252,9 @@ function TestimonialsPage() {
       {/* All Testimonials Grid */}
       <section className="all-testimonials-section animate-section">
         <div className="testimonials-container">
-          <h2>More From Our Students</h2>
+          <h2>{t.moreTitle}</h2>
           <p className="section-description">
-            Students from around the world share their experiences with Link English
+            {t.moreSubtitle}
           </p>
           
           <div className="testimonials-grid">
@@ -288,11 +278,11 @@ function TestimonialsPage() {
       {/* Call to Action */}
       <section className="testimonials-cta-section animate-section">
         <div className="testimonials-container">
-          <h2>Start Your Success Story Today</h2>
-          <p>Join thousands of satisfied students on their journey to English fluency</p>
+          <h2>{t.ctaTitle}</h2>
+          <p>{t.ctaText}</p>
           <Link to="/contact" className="cta-button">
             <span className="button-shine"></span>
-            Schedule Your Free Trial Lesson
+            {t.ctaBtn}
           </Link>
         </div>
       </section>

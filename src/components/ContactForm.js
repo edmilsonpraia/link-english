@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useLanguage } from '../LanguageContext';
+import translations from '../translations';
 import flagsImage from '../assets/images/flags.png';
 
 function ContactForm() {
+  const { language } = useLanguage();
+  const t = translations[language].contactForm;
   const [formData, setState] = useState({
     name: '',
     email: '',
@@ -136,14 +140,14 @@ function ContactForm() {
             WebkitTextFillColor: 'transparent',
             display: 'inline-block'
           }}>
-            Get in touch with us
+            {t.title}
           </h2>
           <p style={{ 
             marginBottom: '2rem',
             color: 'rgba(255, 255, 255, 0.8)',
             fontSize: '1.1rem'
           }}>
-            Don't hesitate to contact us for further details.
+            {t.subtitle}
           </p>
           
           <div style={{ 
@@ -200,7 +204,7 @@ function ContactForm() {
               marginBottom: '1.5rem',
               color: '#4caf50'
             }}>
-              ✓ Thanks for your message! We will get back to you soon.
+              {t.successMsg}
             </div>
           )}
 
@@ -226,14 +230,14 @@ function ContactForm() {
                 color: 'rgba(255, 255, 255, 0.9)',
                 fontSize: '0.95rem'
               }}>
-                Name
+                {t.nameLabel}
               </label>
               <input 
                 type="text" 
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Your name here" 
+                placeholder={t.namePlaceholder} 
                 required
                 disabled={loading}
                 style={{ 
@@ -257,14 +261,14 @@ function ContactForm() {
                 color: 'rgba(255, 255, 255, 0.9)',
                 fontSize: '0.95rem'
               }}>
-                Email
+                {t.emailLabel}
               </label>
               <input 
                 type="email" 
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="Your email here" 
+                placeholder={t.emailPlaceholder} 
                 required
                 disabled={loading}
                 style={{ 
@@ -288,13 +292,13 @@ function ContactForm() {
                 color: 'rgba(255, 255, 255, 0.9)',
                 fontSize: '0.95rem'
               }}>
-                Message
+                {t.messageLabel}
               </label>
               <textarea 
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Your message here" 
+                placeholder={t.messagePlaceholder} 
                 rows="5" 
                 required
                 disabled={loading}
@@ -336,7 +340,7 @@ function ContactForm() {
                 opacity: loading ? 0.7 : 1
               }}
             >
-              {loading ? 'Sending...' : 'Send message'}
+              {loading ? t.sending : t.sendBtn}
             </button>
           </form>
         </div>

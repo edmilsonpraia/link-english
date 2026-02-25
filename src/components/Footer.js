@@ -1,6 +1,10 @@
 import React from 'react';
+import { useLanguage } from '../LanguageContext';
+import translations from '../translations';
 
 function Footer() {
+  const { language } = useLanguage();
+  const t = translations[language].footer;
   return (
     <footer style={{ 
       backgroundColor: '#191C2C', 
@@ -22,7 +26,7 @@ function Footer() {
           margin: '0',
           fontSize: '0.9rem'
         }}>
-          © All Rights Reserved. Link English
+          {t.copyright}
         </p>
         
         <div style={{ 

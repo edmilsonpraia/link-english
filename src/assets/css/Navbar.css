@@ -296,9 +296,44 @@
   }
 }
 
+/* Botão de tradução */
+.lang-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(79, 158, 232, 0.15);
+  border: 1px solid rgba(79, 158, 232, 0.3);
+  color: white;
+  padding: 0.35rem 0.6rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.lang-toggle-btn:hover {
+  background: rgba(79, 158, 232, 0.3);
+  border-color: #4F9EE8;
+  transform: translateY(-1px);
+}
+
+.lang-flag {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.lang-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
 /* Melhorias de acessibilidade */
 .navbar-link:focus,
 .social-link:focus,
+.lang-toggle-btn:focus,
 .mobile-menu-button:focus {
   outline: 2px solid #4F9EE8;
   outline-offset: 2px;

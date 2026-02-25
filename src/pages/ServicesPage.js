@@ -1,56 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../LanguageContext';
+import translations from '../translations';
 import '../assets/css/ServicesPage.css';
 
 function ServicesPage() {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { language } = useLanguage();
+  const t = translations[language].services;
 
   useEffect(() => {
-    // Ativando animações baseadas em scroll
     const handleScroll = () => {
       const sections = document.querySelectorAll('.animate-section');
       sections.forEach(section => {
         const sectionTop = section.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
-        
         if (sectionTop < windowHeight * 0.75) {
           section.classList.add('visible');
         }
       });
     };
-    
     window.addEventListener('scroll', handleScroll);
-    // Iniciar com os elementos visíveis na tela
     handleScroll();
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => { window.removeEventListener('scroll', handleScroll); };
   }, []);
 
-  // Função para abrir o modal
   const openModal = (course) => {
     setSelectedCourse(course);
     setIsModalOpen(true);
-    document.body.style.overflow = 'hidden'; // Previne scroll da página
+    document.body.style.overflow = 'hidden';
   };
 
-  // Função para fechar o modal
   const closeModal = () => {
     setSelectedCourse(null);
     setIsModalOpen(false);
-    document.body.style.overflow = 'unset'; // Restaura scroll da página
+    document.body.style.overflow = 'unset';
   };
 
-  // Cursos principais
   const mainCourses = [
     {
-      title: "General English",
-      description: "Develop well-rounded language skills with our comprehensive program covering speaking, listening, reading, and writing.",
-      level: "Beginner to Advanced",
+      title: t.generalEnglish,
+      description: t.generalEnglishDesc,
+      level: t.begToAdv,
       duration: "16-24 weeks",
-      features: ["Small class sizes", "Weekly progress reports", "Regular speaking practice"],
+      features: [t.smallClasses, t.weeklyReports, t.regularSpeaking],
       icon: "📚",
       pricing: {
         group: { price: "$65", period: "per month" },
@@ -59,11 +53,11 @@ function ServicesPage() {
       }
     },
     {
-      title: "Business English",
-      description: "Master professional communication for international business settings, including presentations, negotiations, and correspondence.",
-      level: "Intermediate to Advanced",
+      title: t.businessEnglish,
+      description: t.businessEnglishDesc,
+      level: t.intToAdv,
       duration: "16-20 weeks",
-      features: ["Industry-specific vocabulary", "Business case studies", "Mock meetings"],
+      features: [t.industryVocab, t.businessCases, t.mockMeetings],
       icon: "💼",
       pricing: {
         group: { price: "$85", period: "per month" },
@@ -72,25 +66,24 @@ function ServicesPage() {
       }
     },
     {
-      title: "Pronunciation Course",
-      description: "Sound clear and confident, not lost in translation. Speak naturally with stress/intonation like a native.",
-      level: "All Levels",
+      title: t.pronunciationCourse,
+      description: t.pronunciationCourseDesc,
+      level: t.allLevels,
       duration: "8-12 weeks",
-      features: ["Video Lessons", "Personalized feedback", "Access to our Sounds Library"],
+      features: [t.videoLessons, t.personalFeedback, t.soundsLibrary],
       icon: "🗣️",
       pricing: {
         group: { price: "$49", period: "per month" },
         individual: { price: "$99", period: "per month" },
         online: { price: "$129", period: "per month" }
-       
       }
     },
     {
-      title: "Conversational English",
-      description: "Focus on speaking fluency and listening comprehension in a supportive environment with native speakers.",
-      level: "All Levels",
+      title: t.conversationalEnglish,
+      description: t.conversationalEnglishDesc,
+      level: t.allLevels,
       duration: "10-14 weeks",
-      features: ["Real-world topics", "Pronunciation workshops", "Cultural discussions"],
+      features: [t.realWorldTopics, t.pronunciationWorkshops, t.culturalDiscussions],
       icon: "🗣️",
       pricing: {
         group: { price: "$55", period: "per month" },
@@ -99,11 +92,11 @@ function ServicesPage() {
       }
     },
     {
-      title: "Email Writing",
-      description: "Write Clear, Polished Emails in Minutes.  Avoid confusing or rude tones with natural-sounding phrases. Master professional etiquette",
-      level: "Intermediate to Advanced",
+      title: t.emailWriting,
+      description: t.emailWritingDesc,
+      level: t.intToAdv,
       duration: "12-16 weeks",
-      features: ["Polished emails", "CVs and cover letters"],
+      features: [t.polishedEmails, t.cvsLetters],
       icon: "📝",
       pricing: {
         group: { price: "$55", period: "per month" },
@@ -113,96 +106,11 @@ function ServicesPage() {
     }
   ];
 
-  // Tipos de aulas
-  const classTypes = [
-    {
-      title: "Group Classes",
-      description: "Learn collaboratively in our interactive group setting. Perfect for building confidence and practicing with peers.",
-      schedule: "Morning, afternoon, and evening sessions",
-      size: "6-12 students per class",
-      image: "https://via.placeholder.com/400x300"
-    },
-    {
-      title: "Private Tutoring",
-      description: "Personalized one-on-one instruction tailored to your specific goals, learning style, and pace.",
-      schedule: "Flexible scheduling",
-      size: "Individual instruction",
-      image: "https://via.placeholder.com/400x300"
-    },
-    {
-      title: "Online Learning",
-      description: "Access our quality instruction from anywhere with our interactive virtual classroom experience.",
-      schedule: "24/7 platform access with scheduled live sessions",
-      size: "Various options available",
-      image: "https://via.placeholder.com/400x300"
-    }
-  ];
-
-  // Recursos especiais
   const specialResources = [
-    {
-      title: "Speaking Club",
-      description: "Weekly sessions where students practice English in a relaxed social setting with various discussion topics.",
-      frequency: "Weekly"
-    },
-    {
-      title: "Grammar Club",
-      description: "Master tricky English grammar in a fun, supportive group! Each week, we tackle a new topic through clear explanations, interactive exercises, and real-life practice",
-      frequency: "Weekly"
-    },
-    {
-      title: "Consultation & Coaching",
-      description: "Elevate your teaching skills with personalized guidance! Whether you're new to teaching or looking to refine your methods, we offer one-on-one consultations to help you",
-      frequency: "Daily"
-    },
-    {
-      title: "Masterclass & Workshops",
-      description: "Whether you're a student, professional, or lifelong learner, our classes and workshops are designed to help you speak, write, and think in English with ease.",
-      frequency: "Bi-weekly"
-    }
-  ];
-
-  // Planos e preços
-  const pricingPlans = [
-    {
-      name: "Basic",
-      price: "$199",
-      period: "per month",
-      features: [
-        "2 group classes per week",
-        "Basic learning materials",
-        "Monthly progress assessment",
-        "Access to online resources"
-      ],
-      recommended: false
-    },
-    {
-      name: "Standard",
-      price: "$349",
-      period: "per month",
-      features: [
-        "4 group classes per week",
-        "Complete learning materials",
-        "Bi-weekly progress assessment",
-        "Full access to online resources",
-        "Weekly conversation club"
-      ],
-      recommended: true
-    },
-    {
-      name: "Premium",
-      price: "$499",
-      period: "per month",
-      features: [
-        "5 group classes per week",
-        "2 private sessions per month",
-        "Complete learning materials",
-        "Weekly progress assessment",
-        "Priority access to all resources",
-        "All special events included"
-      ],
-      recommended: false
-    }
+    { title: t.speakingClub, description: t.speakingClubDesc, frequency: t.weekly },
+    { title: t.grammarClub, description: t.grammarClubDesc, frequency: t.weekly },
+    { title: t.consultCoaching, description: t.consultCoachingDesc, frequency: t.daily },
+    { title: t.masterclassWorkshops, description: t.masterclassWorkshopsDesc, frequency: t.biWeekly }
   ];
 
   return (
@@ -210,13 +118,11 @@ function ServicesPage() {
       {/* Hero Section */}
       <section className="services-hero-section animate-section">
         <div className="services-container">
-          <h1 className="gradient-text">Our Services</h1>
-          <p className="services-subtitle">
-            Comprehensive English learning programs designed to help you achieve fluency with confidence
-          </p>
+          <h1 className="gradient-text">{t.heroTitle}</h1>
+          <p className="services-subtitle">{t.heroSubtitle}</p>
           <div className="hero-buttons">
-            <a href="#courses" className="service-button primary">Explore Courses</a>
-            <a href="#contact" className="service-button secondary">Get Started</a>
+            <a href="#courses" className="service-button primary">{t.exploreCourses}</a>
+            <a href="#contact" className="service-button secondary">{t.getStarted}</a>
           </div>
         </div>
         <div className="hero-pattern"></div>
@@ -225,11 +131,8 @@ function ServicesPage() {
       {/* Main Courses Section */}
       <section id="courses" className="main-courses-section animate-section">
         <div className="services-container">
-          <h2>Core Programs</h2>
-          <p className="section-description">
-            Our carefully designed courses cater to various goals and proficiency levels
-          </p>
-
+          <h2>{t.corePrograms}</h2>
+          <p className="section-description">{t.coreProgramsDesc}</p>
           <div className="courses-grid">
             {mainCourses.map((course, index) => (
               <div key={index} className="course-card">
@@ -237,22 +140,19 @@ function ServicesPage() {
                 <h3>{course.title}</h3>
                 <p className="course-description">{course.description}</p>
                 <div className="course-details">
-                  <p><strong>Level:</strong> {course.level}</p>
-                  <p><strong>Duration:</strong> {course.duration}</p>
+                  <p><strong>{t.level}:</strong> {course.level}</p>
+                  <p><strong>{t.duration}:</strong> {course.duration}</p>
                 </div>
                 <div className="course-features">
-                  <h4>Key Features:</h4>
+                  <h4>{t.keyFeatures}</h4>
                   <ul>
                     {course.features.map((feature, i) => (
                       <li key={i}>{feature}</li>
                     ))}
                   </ul>
                 </div>
-                <button 
-                  onClick={() => openModal(course)} 
-                  className="course-button"
-                >
-                  Learn More
+                <button onClick={() => openModal(course)} className="course-button">
+                  {t.learnMore}
                 </button>
               </div>
             ))}
@@ -263,17 +163,14 @@ function ServicesPage() {
       {/* Special Resources Section */}
       <section className="special-resources-section animate-section">
         <div className="services-container">
-          <h2>Additional Resources</h2>
-          <p className="section-description">
-            Enhance your learning experience with our supplementary programs and facilities
-          </p>
-
+          <h2>{t.additionalResources}</h2>
+          <p className="section-description">{t.additionalResourcesDesc}</p>
           <div className="resources-grid">
             {specialResources.map((resource, index) => (
               <div key={index} className="resource-card">
                 <h3>{resource.title}</h3>
                 <p>{resource.description}</p>
-                <p className="resource-frequency"><span>Availability:</span> {resource.frequency}</p>
+                <p className="resource-frequency"><span>{t.availability}:</span> {resource.frequency}</p>
               </div>
             ))}
           </div>
@@ -283,19 +180,19 @@ function ServicesPage() {
       {/* FAQ Section */}
       <section className="faq-section animate-section">
         <div className="services-container">
-          <h2>Frequently Asked Questions</h2>
+          <h2>{t.faqTitle}</h2>
           <div className="faq-grid">
             <div className="faq-item">
-              <h3>How do I determine my current English level?</h3>
-              <p>We offer a complimentary placement test to all new students. This assessment evaluates your speaking, listening, reading, and writing skills to determine the most appropriate starting level.</p>
+              <h3>{t.faq1Q}</h3>
+              <p>{t.faq1A}</p>
             </div>
             <div className="faq-item">
-              <h3>How long will it take to become fluent?</h3>
-              <p>Progress varies based on several factors including starting level, study intensity, and individual aptitude. Generally, students advance one proficiency level every 8-12 weeks with consistent practice.</p>
+              <h3>{t.faq2Q}</h3>
+              <p>{t.faq2A}</p>
             </div>
             <div className="faq-item">
-              <h3>Do you offer specialized industry vocabulary?</h3>
-              <p>Yes, we offer specialized modules for various industries including medical, legal, technological, and financial sectors. These can be incorporated into private lessons or as add-ons to regular programs.</p>
+              <h3>{t.faq3Q}</h3>
+              <p>{t.faq3A}</p>
             </div>
           </div>
         </div>
@@ -304,82 +201,76 @@ function ServicesPage() {
       {/* Call to Action */}
       <section id="contact" className="services-cta-section animate-section">
         <div className="services-container">
-          <h2>Ready to Elevate Your English Skills?</h2>
-          <p>Schedule your free placement test and consultation with our academic team</p>
+          <h2>{t.ctaTitle}</h2>
+          <p>{t.ctaText}</p>
           <Link to="/contact" className="cta-button">
             <span className="button-shine"></span>
-            Start Your Journey Today
+            {t.ctaBtn}
           </Link>
         </div>
       </section>
 
-      {/* Modal para detalhes do curso */}
+      {/* Modal */}
       {isModalOpen && selectedCourse && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>&times;</button>
-            
             <div className="modal-header">
               <div className="modal-icon">{selectedCourse.icon}</div>
               <h2>{selectedCourse.title}</h2>
             </div>
-
             <div className="modal-body">
               <div className="modal-section">
-                <h3>Course Options & Pricing</h3>
+                <h3>{t.courseOptions}</h3>
                 <div className="pricing-options">
                   <div className="pricing-card-modal">
-                    <h4>👥 Group Classes</h4>
+                    <h4>👥 {t.groupClasses}</h4>
                     <div className="price">{selectedCourse.pricing.group.price}</div>
                     <div className="period">{selectedCourse.pricing.group.period}</div>
                     <ul>
-                      <li>6-10 students per class</li>
-                      <li>Interactive learning environment</li>
-                      <li>Dynamic discussions</li>
+                      <li>{t.studentsPerClassGroup}</li>
+                      <li>{t.interactiveLearning}</li>
+                      <li>{t.dynamicDiscussions}</li>
                     </ul>
                   </div>
-                  
                   <div className="pricing-card-modal popular">
-                    <div className="popular-badge">Most Popular</div>
-                    <h4>👤 Pair Lessons </h4>
+                    <div className="popular-badge">{t.mostPopular}</div>
+                    <h4>👤 {t.pairLessons}</h4>
                     <div className="price">{selectedCourse.pricing.individual.price}</div>
                     <div className="period">{selectedCourse.pricing.individual.period}</div>
                     <ul>
-                      <li>2 Students per class</li>
-                      <li>Interactive practice</li>
-                      <li>Customized curriculum</li>
+                      <li>{t.studentsPerClassPair}</li>
+                      <li>{t.interactivePractice}</li>
+                      <li>{t.customizedCurriculum}</li>
                     </ul>
                   </div>
-                  
                   <div className="pricing-card-modal">
-                    <h4>💻 Individual Lessons</h4>
+                    <h4>💻 {t.individualLessons}</h4>
                     <div className="price">{selectedCourse.pricing.online.price}</div>
                     <div className="period">{selectedCourse.pricing.online.period}</div>
                     <ul>
-                      <li>Customized curriculum</li>
-                      <li>Flexible scheduling</li>
-                      <li>Personalized instruction and feedback</li>
+                      <li>{t.customizedCurriculum}</li>
+                      <li>{t.flexibleScheduling}</li>
+                      <li>{t.personalizedInstruction}</li>
                     </ul>
                   </div>
                 </div>
               </div>
-
               <div className="modal-section">
-                <h3>Course Details</h3>
+                <h3>{t.courseDetails}</h3>
                 <div className="course-info-modal">
-                  <p><strong>Level:</strong> {selectedCourse.level}</p>
-                  <p><strong>Duration:</strong> {selectedCourse.duration}</p>
-                  <p><strong>Description:</strong> {selectedCourse.description}</p>
+                  <p><strong>{t.level}:</strong> {selectedCourse.level}</p>
+                  <p><strong>{t.duration}:</strong> {selectedCourse.duration}</p>
+                  <p><strong>{t.description}:</strong> {selectedCourse.description}</p>
                 </div>
               </div>
             </div>
-
             <div className="modal-footer">
               <Link to="/contact" className="modal-button primary" onClick={closeModal}>
-                Contact Us
+                {t.contactUs}
               </Link>
               <Link to="/contact" className="modal-button secondary" onClick={closeModal}>
-                Enroll Now
+                {t.enrollNow}
               </Link>
             </div>
           </div>

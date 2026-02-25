@@ -1,11 +1,16 @@
 import React from 'react';
+import { useLanguage } from '../LanguageContext';
+import translations from '../translations';
 import '../assets/css/OfferingsSection.css';
 
 function OfferingsSection() {
+  const { language } = useLanguage();
+  const t = translations[language].offerings;
+
   const offerings = [
     {
-      title: "Individual lessons",
-      description: "Tailored sessions with experienced instructors focusing on your specific learning needs and goals.",
+      title: t.individualLessons,
+      description: t.individualLessonsDesc,
       icon: (
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -14,8 +19,8 @@ function OfferingsSection() {
       )
     },
     {
-      title: "Group classes",
-      description: "Engaging lessons led by passionate teachers in a collaborative environment that promotes conversation and cultural exchange.",
+      title: t.groupClasses,
+      description: t.groupClassesDesc,
       icon: (
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -26,8 +31,8 @@ function OfferingsSection() {
       )
     },
     {
-      title: "Conversation practice",
-      description: "Interactive sessions to boost your speaking skills through real-world scenarios and confidence-building exercises.",
+      title: t.conversationPractice,
+      description: t.conversationPracticeDesc,
       icon: (
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -37,8 +42,8 @@ function OfferingsSection() {
       )
     },
     {
-      title: "Masterclass",
-      description: "Focused training on specific language topics such as business English, academic writing, and pronunciation.",
+      title: t.masterclass,
+      description: t.masterclassDesc,
       icon: (
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
@@ -46,8 +51,8 @@ function OfferingsSection() {
       )
     },
     {
-      title: "Online courses",
-      description: "Flexible learning options to fit your schedule with multimedia resources and regular feedback from instructors.",
+      title: t.onlineCourses,
+      description: t.onlineCoursesDesc,
       icon: (
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
@@ -58,8 +63,8 @@ function OfferingsSection() {
       )
     },
     {
-      title: "Language resources",
-      description: "Access to a wealth of materials to aid your studies, including digital libraries, practice tests, and study guides.",
+      title: t.languageResources,
+      description: t.languageResourcesDesc,
       icon: (
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -77,22 +82,22 @@ function OfferingsSection() {
       {/* Background elements */}
       <div className="offerings-bg-element bg-element-1"></div>
       <div className="offerings-bg-element bg-element-2"></div>
-      
+
       <div className="offerings-container">
-        <h2 className="offerings-title">Our offerings</h2>
+        <h2 className="offerings-title">{t.title}</h2>
         <p className="offerings-subtitle">
-          Customized programs to enhance your English learning journey, designed to meet your unique needs and goals
+          {t.subtitle}
         </p>
-        
+
         <div className="offerings-buttons">
           <a href="#contact" className="btn-primary">
-            Contact
+            {t.contact}
           </a>
           <a href="#reviews" className="btn-secondary">
-            Reviews
+            {t.reviews}
           </a>
         </div>
-        
+
         <div className="offerings-grid">
           {offerings.map((offering, index) => (
             <div key={index} className="offering-card">

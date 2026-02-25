@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../LanguageContext';
+import translations from '../translations';
 import '../assets/css/HeroSection.css';
 
 function HeroSection() {
+  const { language } = useLanguage();
+  const t = translations[language].hero;
+
   useEffect(() => {
     // Criando animação de partículas no fundo
     const bgAnimation = document.createElement('div');
     bgAnimation.className = 'bg-animation';
     document.body.appendChild(bgAnimation);
-    
+
     for (let i = 0; i < 50; i++) {
       const span = document.createElement('span');
       span.style.width = `${Math.random() * 10 + 3}px`;
@@ -19,7 +24,7 @@ function HeroSection() {
       span.style.animationDuration = `${Math.random() * 10 + 15}s`;
       bgAnimation.appendChild(span);
     }
-    
+
     return () => {
       document.body.removeChild(bgAnimation);
     };
@@ -31,55 +36,55 @@ function HeroSection() {
       <div className="floating-circle circle-1"></div>
       <div className="floating-circle circle-2"></div>
       <div className="floating-circle circle-3"></div>
-      
+
       <div className="hero-container">
-        <h1 className="hero-title">Link English</h1>
+        <h1 className="hero-title">{t.title}</h1>
         <p className="hero-subtitle">
-          Elevate your language skills and unlock a world of opportunities through immersive learning
+          {t.subtitle}
         </p>
 
         {/* Botão English Test */}
         <div className="hero-test-button">
           <Link to="/english-test" className="btn btn-test">
             <span className="test-icon">📋</span>
-            English Test
+            {t.englishTest}
             <span className="btn-arrow">→</span>
           </Link>
         </div>
-        
+
         <div className="service-cards">
           {/* Advance Card */}
           <div className="service-card">
-            <h3>Advance</h3>
+            <h3>{t.advance}</h3>
             <p>
-              Elevate your English skills with our modern courses designed for every level, from beginner to advanced.
+              {t.advanceDesc}
             </p>
             <Link to="/services" className="btn">
-              Services
+              {t.servicesBtn}
               <span className="btn-arrow">→</span>
             </Link>
           </div>
-          
+
           {/* Inspire Card */}
           <div className="service-card">
-            <h3>Inspire</h3>
+            <h3>{t.inspire}</h3>
             <p>
-              Discover your language potential in a nurturing environment that encourages growth and confidence.
+              {t.inspireDesc}
             </p>
             <Link to="/services" className="btn">
-              Services
+              {t.servicesBtn}
               <span className="btn-arrow">→</span>
             </Link>
           </div>
-          
+
           {/* Learn Card */}
           <div className="service-card">
-            <h3>Learn</h3>
+            <h3>{t.learn}</h3>
             <p>
-              Immerse yourself in a comprehensive learning experience that strengthens both your speaking and comprehension abilities.
+              {t.learnDesc}
             </p>
             <Link to="/services" className="btn">
-              Services
+              {t.servicesBtn}
               <span className="btn-arrow">→</span>
             </Link>
           </div>

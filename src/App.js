@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './LanguageContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -13,6 +14,7 @@ import './assets/css/App.css';
 
 function App() {
   return (
+    <LanguageProvider>
     <Router>
       <div className="app">
         <ScrollToTop />
@@ -30,6 +32,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </LanguageProvider>
   );
 }
 
